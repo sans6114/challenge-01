@@ -1,0 +1,141 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Existing styles */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  --naranja: #b63f1d;
+  --marron: #87635a;
+}
+
+main {
+  background-color: #fcf8f5;
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+  padding: 50px;
+}
+
+@media(width > 480px) {
+  main {
+    grid-template-columns: 3fr 1fr;
+    gap: 20px 40px;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+section h2 {
+  font-size: xx-large;
+}
+
+.desserts {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.dessert-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.image-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-height: 300px;
+}
+.image-container img:first-of-type {
+  border-radius: 10px;
+  width: 100%;
+  max-height: 80%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  order: 0;
+}
+.image-container button{
+display: flex;
+align-items: center;
+gap: 7px;
+font-weight: 600;
+padding: 1em 1.3em;
+border: 1px solid var(--naranja);
+white-space: nowrap;
+border-radius: 20px;
+position: absolute;
+bottom: 10%;
+}
+
+
+.dessert-card h3, .dessert-card p{
+  padding: 2px 7px;
+}
+
+.dessert-card h3{
+font-weight: bold;
+order: 2;
+}
+.dessert-card p:first-of-type {
+  order: 1; /* Primer párrafo */
+}
+
+.dessert-card p:last-of-type {
+  order: 3; /* Segundo párrafo */
+}
+
+
+
+
+aside {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: max-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+aside h2 {
+  color: var(--naranja);
+  align-self: start;
+  padding: 0 10px;
+}
+
+aside p {
+  padding: 20px 0px;
+  font-weight: 600;
+  color: var(--marron);
+}
