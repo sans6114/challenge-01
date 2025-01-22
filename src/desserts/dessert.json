@@ -1,0 +1,26 @@
+[
+    {
+        "image": "/public/images/cupcake.jpg",
+        "name": "Cup Cake",
+        "category": "Mini Cake",
+        "price": 5.00
+    },
+    {
+        "image": "/public/images/helado.jpg",
+        "name": "Ice Cream Sundae",
+        "category": "Ice Cream",
+        "price": 6.50
+    },
+    {
+        "image": "/public/images/donas.jpg",
+        "name": "Donuts",
+        "category": "Donuts",
+        "price": 4.50
+    },
+    {
+        "image": "/public/images/facturas.jpg",
+        "name": "Facturas",
+        "category": "Mini Cake",
+        "price": 7.00
+    }
+]
