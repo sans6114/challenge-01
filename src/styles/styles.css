@@ -52,8 +52,8 @@ section {
   justify-content: space-between;
   gap: 40px;
 
-  & h2 {
-    font-size: xx-large;
+  h2 {
+    font-size: 2.4em;
   }
 }
 
@@ -67,6 +67,7 @@ section {
 }
 
 .dessert-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -75,58 +76,52 @@ section {
   padding: 7px;
   height: 400px;
 
-  & h3,
-  & p {
-    padding-left: 15px;
-  }
-
-  & h3 {
-    font-weight: bold;
-    order: 2;
-  }
-
-  & p:first-of-type {
-    order: 1;
-    /* Primer párrafo */
-  }
-
-  & p:last-of-type {
-    order: 3;
-    padding-bottom: 5px;
-    /* Segundo párrafo */
+  img {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: 50% 30%;
   }
 }
 
-
-.image-container {
+.dessert-info {
   display: flex;
   flex-direction: column;
+  align-items: start;
+  text-align: start;
+  margin: 0 20px;
+}
+
+.empty-btn {
+  display: flex;
   align-items: center;
-  position: relative;
-  height: 300px;
+  justify-content: center;
+  width: 150px;
+  font-weight: 500;
+  margin: 0 auto;
+  font-weight: 600;
+  gap: 7px;
+  padding: 0.6em 0.9em;
+  border: 1px solid var(--naranja);
+  white-space: nowrap;
+  border-radius: 17px;
+  position: absolute;
+  top: 235px;
+  left: 50%; /* Move halfway from the left */
+  transform: translateX(-50%);
 
-  & img:first-of-type {
-    border-radius: 10px;
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-    order: 0;
-  }
 
-  & button {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-weight: 600;
-    padding: 1em 1.3em;
-    border: 1px solid var(--naranja);
-    white-space: nowrap;
-    border-radius: 20px;
-    position: absolute;
-    bottom: 10%;
+  img{
+    width: 30px;
+    height: 30px;
   }
 }
+
+.empty-btn:hover {
+  cursor: pointer;
+}
+
 
 aside {
   background-color: white;
@@ -136,11 +131,13 @@ aside {
   gap: 20px 0px;
   padding: 10px;
   border-radius: 10px;
-  & h2 {
+
+  h2 {
     color: var(--naranja);
     padding: 0 10px;
   }
-  & p {
+
+  p {
     padding: 20px 0px;
     font-weight: 600;
     color: var(--marron);
@@ -172,6 +169,12 @@ aside {
   }
 }
 
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .info-cart {
   display: grid;
   height: 70px;
@@ -189,14 +192,16 @@ aside {
     align-items: start;
   }
 }
+
 /* aviso de total de compra */
-.total{
+.total {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 /* boton de confirmacion de compra */
-.btn-confirmed{
+.btn-confirmed {
   width: 100%;
   padding: 10px 15px;
   border-radius: 10px;

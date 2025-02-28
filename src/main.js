@@ -1,11 +1,39 @@
+//json con mi informacion para cada card
 import desserts from './desserts/dessert.json';
-import { createCard } from './utils/createCard';
+
+//container de mis cards
+const dessertsContainer = document.querySelector('.desserts')
+//container de mi carrito
+const cartContainer = document.querySelector('#cart-container')
+//heading de mi carrito
+const cartHeading = document.querySelector('#cart-heading')
+const miFuncion = () => {
+  console.log('hola!')
+  }
+//funcion que crea el html para mi card
+const createCardDessert = (dessert) => {
+  return `<div class="dessert-card">
+  <div class="image-container">
+  <img src="${dessert.image}" alt=${dessert.name}>
+  </div>
+  <h3>${dessert.name}</h3>
+  <p>${dessert.category}</p>
+  <p>$${dessert.price}</p>
+  </div>`
+}
+export const createCard = (desserts) => {
+  const html = desserts.map(dessert => createCardDessert(dessert)).join('');
+  const containerBtn = document.querySelector('.image-container')
+  containerBtn.appendChild()
+  dessertsContainer.innerHTML = html
+}
+
+function renderButton(dessert){
+return console.log(dessert)
+}
 
 //funcion que crea el html para mi card
 createCard(desserts)
-
-const cartContainer = document.querySelector('#cart-container')
-const cartHeading = document.querySelector('#cart-heading')
 
 // obtengo mi carrito del localStorage, si no existe creo un array vacio
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -13,8 +41,10 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 const renderEmptyCart = () => {
   return cartContainer.innerHTML = `
-  <img id="img-empty" src="/public/images/illustration-empty-cart.svg" alt="Empty cart illustration">
-  <p>Your added items will appear here</p>`
+  <div class="cart-empty">
+  <img src="/public/images/illustration-empty-cart.svg" alt="Empty cart illustration">
+  <p>Your added items will appear here</p>
+  </div>`
 }
 
 const renderCartItem = () => {
@@ -54,22 +84,25 @@ function renderCart() {
   updateCartHeading()
 
   if (cart.length === 0) {
-  //renderizo carrito vacio
-  renderEmptyCart()
+    //renderizo carrito vacio
+    renderEmptyCart()
   } else {
     renderCartItem()
   }
 }
 renderCart()
 
+
+
+
 //accedo a los botones creados por mis cards
 const btnsAdd = document.querySelectorAll('.image-container button')
 //listener de mi boton al hacer click en el
 btnsAdd.forEach(btn => {
-  btn.addEventListener('click', (event) => {
+  btn.addEventListener('click', () => {
     const card = btn.closest('.dessert-card')
-    const nameCard = card.querySelector('h3').textContent
-    const cardSelected = desserts.find(dessert => dessert.name === nameCard)
+    const productName = card.querySelector('h3').textContent
+    const cardSelected = desserts.find(dessert => dessert.name === productName)
     if (!cardSelected) return
     const findInCart = cart.find(itemCart => itemCart.name === cardSelected.name)
     if (findInCart) {
@@ -80,7 +113,8 @@ btnsAdd.forEach(btn => {
       cart.push({ ...cardSelected, quantity: 1 })
     }
     localStorage.setItem('cart', JSON.stringify(cart))
-    //llamar al que cambie el carrito
+    //llamar a que cambie el carrito
     renderCart()
+    renderButton(btn, !!findInCart, findInCart)
   })
 })
