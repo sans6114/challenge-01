@@ -30,7 +30,7 @@ body {
 }
 
 main {
-  background-color: #fcf8f5;
+  background-color: rgb(219, 225, 211);
   min-height: 100vh;
   width: 100%;
   display: grid;
@@ -76,8 +76,7 @@ section {
   padding: 7px;
   padding-bottom: 20px;
   height: 450px;
-  border: 2px solid var(--naranja);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 
   img {
     width: 100%;
@@ -88,13 +87,33 @@ section {
   }
 }
 
+/* clase para elemento seleccionado */
+.selected {
+  border: 2px solid var(--naranja);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 .dessert-info {
   display: flex;
   flex-direction: column;
-  align-items: start;
   text-align: start;
-  margin: 0 20px;
+  margin: 0 10px;
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  p:first-child {
+    color: gray;
+    font-weight: 600;
+  }
+
+  p:last-child {
+    color: var(--naranja);
+    font-weight: 700;
+  }
 }
+
 
 .btn {
   display: flex;
@@ -122,6 +141,9 @@ section {
     height: 30px;
   }
 }
+.btn:hover {
+  cursor: pointer;
+}
 
 .btn.modify {
   justify-content: space-between;
@@ -129,27 +151,37 @@ section {
   padding: 0px 4px;
   color: white;
 
-  span {
-    font-size: 1.5em;
+  /* botones que modifican cantidad */
+  button {
+    background-color: transparent;
+    color: white;
+    font-size: 1.3em;
     border-radius: 50%;
-    border: 1.7px solid white;
+    border: 1.6px solid white;
     width: 30px;
     height: 30px;
   }
 
+  button:hover {
+    cursor: pointer;
+  }
+
+  /* texto que muestra mi cantidad en carrito */
+  span {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+  }
 }
 
-.btn.modify span:nth-child(2) {
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
+.btn.modify:hover {
+  cursor: auto;
 }
 
-.btn:hover {
-  cursor: pointer;
-}
+
+
 
 
 aside {

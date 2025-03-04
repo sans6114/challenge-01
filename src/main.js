@@ -4,30 +4,81 @@ import desserts from './desserts/dessert.json';
 // obtengo mi carrito del localStorage, si no existe creo un array vacio
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function btnToColocate (dessert){
+function founded(id) {
+  return cart.find(cartItem => cartItem.id === id);
+}
+
+
+function updateStateBtn(btn, dessert) {
+  const itemInCart = founded(dessert.id)
+  if (itemInCart) {
+    const myNewButton = document.createElement('div')
+    myNewButton.className = btn.className
+    myNewButton.classList.add('modify')
+    myNewButton.innerHTML = `<button class="modify-quantity increment">+</button><span>${itemInCart.quantity}</span><button class="modify-quantity decrement">-</button>`
+    
+    // Reemplazar el botón con los controles
+    //button de incremento:
+    const btnIncrement = myNewButton.querySelector('.modify-quantity.increment')
+    btnIncrement.addEventListener('click', (e) => {
+      e.stopPropagation()
+      //logica
+      updateStateBtn(btn, dessert)
+      console.log('hola')
+    })
+    //button decremento:
+    const btnDecrement = myNewButton.querySelector('.modify-quantity.decrement')
+    btnDecrement.addEventListener('click', (e) => {
+      e.stopPropagation()
+      //logica
+      updateStateBtn(btn, dessert)
+      console.log('hola')
+    })
+    btn.replaceWith(myNewButton)
+    return myNewButton
+  } else {
+    if(btn.classList.contains('modify')){
+      btn.classList.remove('modify')
+    }
+    btn.innerHTML = `<img src="/public/images/icon-add-to-cart.svg" alt="" srcset="">Add to cart`
+    return btn;
+  }
+}
+
+const btnRender = (dessert) => {
   const btn = document.createElement('button')
   btn.classList.add('btn')
-  const cartFounded = cart.find(cartItem => cartItem.name === dessert.name)
-  if(cartFounded){
-    btn.classList.add('modify')
-    btn.innerHTML = `<span class="modify-quantity">+</span><span>1</span><span class="modify-quantity">-</span>`
-  } else{
-      btn.innerHTML = `<img src="/public/images/icon-add-to-cart.svg" alt="" srcset="">Add to cart`
-  }
-  return btn
+  //pongo el estado inicial de mi boton
+  updateStateBtn(btn, dessert)
+  //agrego el listener para mi boton
+  btn.addEventListener('click', () => {
+    //existe mi item en el carrito?
+    const itemInCart = founded(dessert.id)
+    if (itemInCart) {
+      itemInCart.quantity += 1
+    } else {
+      cart.push({ ...dessert, quantity: 1 })
+    }
+    //seteo mi nuevo cart en localStorage
+    localStorage.setItem('cart', JSON.stringify(cart))
+    //vuelvo a renderizar mis botones
+    updateStateBtn(btn, dessert)
+  })
+  return btn;
 }
 
 const createCardDessert = (dessert) => {
   const card = document.createElement('div')
+  card.setAttribute('id', dessert.id)
   card.classList.add('dessert-card')
   card.innerHTML = `<img src="${dessert.image}" alt="${dessert.name}">
   <div class="dessert-info">
-  <h3>${dessert.name}</h3>
   <p>${dessert.category}</p>
+  <h3>${dessert.name}</h3>
   <p>$${dessert.price}</p>
   </div>`
   //boton para colocar
-  const btnForCard = btnToColocate(dessert)
+  const btnForCard = btnRender(dessert)
   card.appendChild(btnForCard)
   return card;
 }
@@ -38,12 +89,10 @@ export const createCards = (desserts) => {
     dessertsContainer.append(createCardDessert(dessert))
   })
 }
-//funcion que crea el html para mi card
+//funcion que crea todas mis cards
 createCards(desserts)
 
-function renderButton(dessert) {
-  return console.log(dessert)
-}
+
 
 //container de mi carrito
 const cartContainer = document.querySelector('#cart-container')
@@ -52,6 +101,39 @@ const cartHeading = document.querySelector('#cart-heading')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//cart
 const renderEmptyCart = () => {
   return cartContainer.innerHTML = `
   <div class="cart-empty">
@@ -108,26 +190,3 @@ renderCart()
 
 
 
-//accedo a los botones creados por mis cards
-const btnsAdd = document.querySelectorAll('.image-container button')
-//listener de mi boton al hacer click en el
-btnsAdd.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const card = btn.closest('.dessert-card')
-    const productName = card.querySelector('h3').textContent
-    const cardSelected = desserts.find(dessert => dessert.name === productName)
-    if (!cardSelected) return
-    const findInCart = cart.find(itemCart => itemCart.name === cardSelected.name)
-    if (findInCart) {
-      //agregar cantidad
-      findInCart.quantity += 1
-    } else {
-      //no esta el item en el cart, hay que agregarlo
-      cart.push({ ...cardSelected, quantity: 1 })
-    }
-    localStorage.setItem('cart', JSON.stringify(cart))
-    //llamar a que cambie el carrito
-    renderCart()
-    renderButton(btn, !!findInCart, findInCart)
-  })
-})
