@@ -182,17 +182,17 @@ const createCartItem = (cartItem) => {
   removeBtn.setAttribute('aria-label', `Remove ${cartItem.name} from cart`)
   removeBtn.innerHTML = `<img src="/public/images/icon-remove-item.svg" alt="Remove item icon">`
 
-//append de los elementos hijos en nodo padre
+  //append de los elementos hijos en nodo padre
   cartCard.appendChild(infoCartCard)
   cartCard.appendChild(removeBtn)
   return cartCard
 }
 
 const renderCartItem = () => {
- 
-cart.forEach(cartItem => {
-  cartContainer.appendChild(createCartItem(cartItem))
-});
+
+  cart.forEach(cartItem => {
+    cartContainer.appendChild(createCartItem(cartItem))
+  });
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
   const totalElement = document.createElement('div')
@@ -205,8 +205,12 @@ cart.forEach(cartItem => {
   confirmBtn.className = 'btn-confirmed'
   confirmBtn.textContent = 'Confirm order'
   confirmBtn.addEventListener('click', () => {
-    if(cart.length > 0){
-      alert('modal aqui')
+    if (cart.length > 0) {
+      const modal = document.querySelector('dialog')
+
+      modal.innerHTML = '<h1>hola sii</h1>'
+      modal.setAttribute('open')
+
     }
   })
 

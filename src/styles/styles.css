@@ -273,3 +273,18 @@ aside {
 .btn-confirmed:hover{
   cursor: pointer;
 }
+
+/* modal styles */
+dialog{
+  width: 25%;
+  height: 80vh;
+  margin: 0 auto;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
