@@ -21,9 +21,11 @@ export function createCartItemHTML(cartItem) {
         deleteBtn.innerHTML = '<img src="/public/images/icon-remove-item.svg" alt="Remove item icon">';
         //event listener
         deleteBtn.addEventListener('click', () => {
+            console.log('delete')
             cart.deleteOfCart(id)
         })
         container.appendChild(infoContainer);
         container.appendChild(deleteBtn);
+        console.log(container.outerHTML)
         return container;
 }
