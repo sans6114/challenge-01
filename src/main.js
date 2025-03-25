@@ -1,5 +1,5 @@
 //json con mi informacion para cada card
-import desserts from './desserts/dessert.json';
+import desserts from './info/dessert.json';
 
 // obtengo mi carrito del localStorage, si no existe creo un array vacio
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
