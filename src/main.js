@@ -157,7 +157,7 @@ const cartHeading = document.querySelector('#cart-heading')
 const renderEmptyCart = () => {
   return cartContainer.innerHTML = `
   <div class="cart-empty">
-  <img src="/public/images/illustration-empty-cart.svg" alt="Empty cart illustration">
+  <img src="/images/illustration-empty-cart.svg" alt="Empty cart illustration">
   <p>Your added items will appear here</p>
   </div>`
 }
@@ -180,7 +180,7 @@ const createCartItem = (cartItem) => {
   //btn para eleminar elementos
   const removeBtn = document.createElement('button')
   removeBtn.setAttribute('aria-label', `Remove ${cartItem.name} from cart`)
-  removeBtn.innerHTML = `<img src="/public/images/icon-remove-item.svg" alt="Remove item icon">`
+  removeBtn.innerHTML = `<img src="/images/icon-remove-item.svg" alt="Remove item icon">`
 
   //append de los elementos hijos en nodo padre
   cartCard.appendChild(infoCartCard)

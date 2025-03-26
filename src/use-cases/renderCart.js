@@ -36,7 +36,7 @@ function renderEmptyCart() {
     const container = document.createElement('div')
     container.classList.add('cart-empty')
 
-    const html = `<img src="/public/images/illustration-empty-cart.svg" alt="Empty cart illustration">
+    const html = `<img src="/images/illustration-empty-cart.svg" alt="Empty cart illustration">
 <p>Your added items will appear here</p>`
 
     container.innerHTML = html;
