@@ -30,7 +30,7 @@ function btnForCart(cartItem) {
 function btnNormal(dessert) {
     const btn = document.createElement('button')
     btn.className = 'btn';
-    btn.innerHTML = `<img src="/public/images/icon-add-to-cart.svg" alt="image of empty cart">Add to cart`;
+    btn.innerHTML = `<img src="/images/icon-add-to-cart.svg" alt="image of empty cart">Add to cart`;
     btn.addEventListener('click', () => {
         cart.addToCart(dessert);
     })

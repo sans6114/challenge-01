@@ -18,7 +18,7 @@ export function createCartItemHTML(cartItem) {
 
         const deleteBtn = document.createElement('button');
         deleteBtn.setAttribute('aria-label', `Remove ${cartItem.name} from cart`)
-        deleteBtn.innerHTML = '<img src="/public/images/icon-remove-item.svg" alt="Remove item icon">';
+        deleteBtn.innerHTML = '<img src="/images/icon-remove-item.svg" alt="Remove item icon">';
         //event listener
         deleteBtn.addEventListener('click', () => {
             cart.deleteOfCart(id)
