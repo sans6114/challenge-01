@@ -1,6 +1,8 @@
+import cart from '../store/cart';
 import { createCartItemHTML } from './createCartItem';
 
 let element;
+
 
 
 export function renderCart(elementID) {
@@ -56,24 +58,41 @@ function renderConfirmedBtn(actualCart, total) {
     //event listener
     confirmedBtn.addEventListener('click', () => {
         const modal = document.querySelector('dialog')
-        modal.open = true;
+        const purchaseContainer = modal.querySelector('.purchase-container')
+        purchaseContainer.innerHTML = '';
+        modal.showModal();
         document.body.classList.add('no-scroll');
         const closeBtn = modal.querySelector('button')
         closeBtn.addEventListener('click', () => {
-            if(document.body.classList.contains('no-scroll')){
-                document.body.classList.remove('no-scroll')
-            }
+            document.body.classList.remove('no-scroll')
+            cart.restartCart()
         })
-        
-
-        //actualCart.forEach(cartItem => {
-    //const { id, name, image, category, price } = cartItem;
-
-            
-      //  })
-
-        console.log(actualCart, total)
+        if (actualCart.length > 3) {
+            purchaseContainer.classList.add('no-overflow')
+        } else {
+            purchaseContainer.classList.remove('no-overflow')
+        }
+        actualCart.forEach(cartItem => purchaseContainer.appendChild(renderPurchaseItem(cartItem)))
+        const totalElement = renderTotal(total)
+        purchaseContainer.appendChild(totalElement)
     })
 
-return confirmedBtn;
+    return confirmedBtn;
+}
+
+function renderPurchaseItem(cartItem) {
+    const { id, name, image, category, price, quantity } = cartItem;
+    const total = quantity * price
+    const itemPurchase = document.createElement('div')
+    itemPurchase.classList.add('purchase-item')
+    itemPurchase.innerHTML = `<img src="${image}" alt="image of dessert: ${name}">
+            <div class="purchase-item-info">
+                <h3>Classic tiramissu</h3>
+                <div class="purchase-price-quantity">
+                    <p aria-label="Quantity">${quantity}x</p>
+                    <p aria-label="Unit price">$${price}</p>
+                </div>
+            </div>
+            <p aria-label="Total-product">$${total}</p>`
+    return itemPurchase;
 }

@@ -15,7 +15,7 @@ export const createDessertHTML = (dessert, itemInCart) => {
     card.className = `dessert-card ${!!itemInCart ? 'selected' : ''}`
 
     const html = `
-        <img src="${image}" alt="${name}">
+        <img src="${image}" alt="image of dessert: ${name}">
         <div class="dessert-info">
             <p>${category}</p>
             <h3>${name}</h3>

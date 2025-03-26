@@ -40,6 +40,10 @@ function increment(itemCart) {
     updateLocalStorage()
 }
 
+/**
+ * 
+ * @param {Number} cartItemId
+ */
 function deleteOfCart(cartItemId){
     cart = cart.filter(cartItem => cartItem.id !== cartItemId)
     updateLocalStorage()
@@ -56,6 +60,10 @@ function decrement(cartItem) {
     updateLocalStorage()
 }
 
+function restartCart(){
+    cart = [];
+    updateLocalStorage()
+}
 
 export default {
     cart,
@@ -64,5 +72,6 @@ export default {
     addToCart,
     increment,
     decrement,
-    deleteOfCart
+    deleteOfCart,
+    restartCart
 }
